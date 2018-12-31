@@ -57,7 +57,7 @@ public class LoginSignupServlet extends HttpServlet {
                     System.out.println("sign up success");
                 }
             } else {
-                System.out.println("没有输入用户名");
+                System.out.println("没有传入用户名");
             }
         } catch (Exception e) {
             e.printStackTrace();
