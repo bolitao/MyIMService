@@ -16,17 +16,21 @@ public class LoginSignupServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/json; charset=UTF-8");
+        req.setCharacterEncoding("UTF-8");
+
         String username = req.getParameter("username");
         String password = req.getParameter("password");
         System.out.println("username:" + username + "\npassword:" + password);
+
         PrintWriter writer = resp.getWriter();
         ResultSet userInfoResult = null;
         Statement statement = null;
         Connection connection = null;
+
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/myim?serverTimezone=UTC&useSSL" +
-                    "=false", "bolitao", "bolitao");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/myim?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8"
+                    , "bolitao", "bolitao");
             statement = connection.createStatement();
             String queryUserInfo;
             String createUesr;

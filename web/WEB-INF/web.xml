@@ -41,4 +41,33 @@
         <servlet-name>messageServlet</servlet-name>
         <url-pattern>/message</url-pattern>
     </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>messageServiceServlet</servlet-name>
+        <servlet-class>servlet.MessageServiceServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>messageServiceServlet</servlet-name>
+        <url-pattern>/message_service</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>querySystemUserIdServlet</servlet-name>
+        <servlet-class>servlet.QuerySystemUserIdServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>querySystemUserIdServlet</servlet-name>
+        <url-pattern>/query-id</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>addContactServlet</servlet-name>
+        <servlet-class>servlet.AddContactServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addContactServlet</servlet-name>
+        <url-pattern>/add-contact</url-pattern>
+    </servlet-mapping>
 </web-app>

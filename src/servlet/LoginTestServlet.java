@@ -11,6 +11,8 @@ public class LoginTestServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html; charset=UTF-8");
+        req.setCharacterEncoding("UTF-8");
+
         PrintWriter writer = resp.getWriter();
         writer.print("hello");
         String username = req.getParameter("username");
