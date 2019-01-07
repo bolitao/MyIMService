@@ -23,7 +23,9 @@ public class ContactServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
 
         String userId = req.getParameter("username");
-        String queryUserContact = "SELECT * FROM contact WHERE userId IN (SELECT userSystemId FROM `user` WHERE userCustomID = +'" + userId + "')";
+//        String queryUserContact = "SELECT contactId, userId, friendId, remark, becomeFriendDate FROM contact WHERE userId IN (SELECT userSystemId FROM `user` WHERE userCustomID = +'" + userId + "')";
+        String queryUserContact = "SELECT contact.contactId, contact.userId, contact.friendId, contact.remark, contact.becomeFriendDate, user.userCustomID FROM `contact`, `user` WHERE (contact.userId = user.userSystemId) AND contact.userId IN (SELECT userSystemId FROM `user` WHERE userCustomID = +'" + userId + "')";
+//        String queryCustomId = "";
 //        String queryUserContact = "SELECT * FROM contact";
 
         PrintWriter writer = resp.getWriter();
@@ -35,14 +37,16 @@ public class ContactServlet extends HttpServlet {
                     "bolitao", "bolitao");
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(queryUserContact);
+//            ResultSet contactCustomIdResult = statement.executeQuery(queryCustomId);
             JSONArray jsonArray = new JSONArray();
-            JSONObject jsonObject = new JSONObject();
             while (resultSet.next()) {
+                JSONObject jsonObject = new JSONObject();
                 jsonObject.put("becomeFriendDate", resultSet.getString("becomeFriendDate"));
                 jsonObject.put("contactId", resultSet.getString("contactId"));
                 jsonObject.put("userId", resultSet.getString("userId"));
                 jsonObject.put("friendId", resultSet.getString("friendId"));
                 jsonObject.put("remark", resultSet.getString("remark"));
+                jsonObject.put("friendCustomId", resultSet.getString("userCustomId"));
                 jsonArray.add(jsonObject);
             }
             writer.print(jsonArray);

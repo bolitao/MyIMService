@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="MyIMService archive">
+    <output-path>$PROJECT_DIR$/web/WEB-INF/classes/artifacts/MyIMService_archive</output-path>
+    <root id="archive" name="MyIMService archive.war">
+      <element id="artifact" artifact-name="MyIMService" />
+      <element id="dir-copy" path="$PROJECT_DIR$/web" />
+    </root>
+  </artifact>
+</component>

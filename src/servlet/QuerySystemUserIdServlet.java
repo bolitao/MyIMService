@@ -34,7 +34,6 @@ public class QuerySystemUserIdServlet extends HttpServlet {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/myim?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8"
                     , "bolitao", "bolitao");
             statement = connection.createStatement();
-
             String queryId = "SELECT userSystemId, userTel, userMail, userCustomID, sex, registrationDate, userNickname, userCustomInfo FROM `user` WHERE userCustomID = " + "'" + username + "'";
             JSONArray jsonArray = new JSONArray();
             JSONObject jsonObject = new JSONObject();
@@ -56,6 +55,8 @@ public class QuerySystemUserIdServlet extends HttpServlet {
             if (!"".equals(jsonArray)) {
                 writer.print(jsonArray);
             }
+            statement.close();
+            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

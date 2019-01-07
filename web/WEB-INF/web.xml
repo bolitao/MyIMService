@@ -68,6 +68,16 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>addContactServlet</servlet-name>
-        <url-pattern>/add-contact</url-pattern>
+        <url-pattern>/add_contact</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>updateMessageStatusServlet</servlet-name>
+        <servlet-class>servlet.UpdateMessageStatusServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateMessageStatusServlet</servlet-name>
+        <url-pattern>/update_message</url-pattern>
     </servlet-mapping>
 </web-app>

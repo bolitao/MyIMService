@@ -8,30 +8,31 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class AddContactServlet extends HttpServlet {
+public class UpdateMessageStatusServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/json; charset=UTF-8");
         req.setCharacterEncoding("UTF-8");
 
-        String friendId = req.getParameter("friendId");
-        String userId = req.getParameter("userId");
+        String messageId = req.getParameter("messageId");
+        System.out.println("接收到 update_message 请求");
+        System.out.println("update messageId" + messageId);
 
-        System.out.println("addContact 获得的参数：" + friendId + ", " + userId);
-        String addContactSQL = "INSERT INTO contact(userId, friendId) VALUES('" + userId + "', '" + friendId + "');INSERT INTO contact(userId, friendId) VALUES('" + friendId + "', '" + userId + "')";
+        String updateMessageStatusSQL = "UPDATE message_info SET messageStatus = 'DELIVERED' WHERE messageStatus = 'IN_SERVER' AND messageId = '" + messageId + "' ";
 
         Statement statement = null;
         Connection connection = null;
-        PrintWriter writer = resp.getWriter();
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/myim?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8"
                     , "bolitao", "bolitao");
             statement = connection.createStatement();
-            statement.executeUpdate(addContactSQL);
+            statement.executeUpdate(updateMessageStatusSQL);
+            System.out.println("成功更新消息状态");
             statement.close();
             connection.close();
         } catch (Exception e) {
