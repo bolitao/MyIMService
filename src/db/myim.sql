@@ -11,7 +11,7 @@
  Target Server Version : 80013
  File Encoding         : 65001
 
- Date: 01/01/2019 21:43:01
+ Date: 31/12/2018 14:55:02
 */
 
 SET NAMES utf8mb4;
@@ -33,7 +33,7 @@ CREATE TABLE `contact`  (
   INDEX `friend`(`friendId`) USING BTREE,
   CONSTRAINT `friend` FOREIGN KEY (`friendId`) REFERENCES `user` (`usersystemid`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `user` FOREIGN KEY (`userId`) REFERENCES `user` (`usersystemid`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of contact
@@ -56,7 +56,7 @@ CREATE TABLE `group`  (
   PRIMARY KEY (`groupId`) USING BTREE,
   INDEX `ownerId`(`ownerId`) USING BTREE,
   CONSTRAINT `ownerId` FOREIGN KEY (`ownerId`) REFERENCES `user` (`usersystemid`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for group_message
@@ -98,27 +98,25 @@ CREATE TABLE `group_user_info`  (
 DROP TABLE IF EXISTS `message_info`;
 CREATE TABLE `message_info`  (
   `messageId` int(11) NOT NULL AUTO_INCREMENT,
-  `messageType` int(11) NULL DEFAULT NULL,
-  `isCalledBack` int(11) NULL DEFAULT NULL,
-  `isImage` tinyint(4) NULL DEFAULT NULL,
-  `senderId` int(11) NOT NULL,
-  `receiverId` int(11) NOT NULL,
-  `messageStatus` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `messageType` int(11) NOT NULL,
+  `isCalledBack` int(11) NOT NULL,
+  `isImage` tinyint(4) NOT NULL,
+  `senderId` int(11) NULL DEFAULT NULL,
+  `receiverId` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`messageId`) USING BTREE,
   INDEX `messageSenderId`(`senderId`) USING BTREE,
   INDEX `messageReceiverId`(`receiverId`) USING BTREE,
   INDEX `messageId`(`messageId`) USING BTREE,
   INDEX `messageId_2`(`messageId`) USING BTREE,
-  INDEX `messageId_3`(`messageId`) USING BTREE,
   CONSTRAINT `messageReceiverId` FOREIGN KEY (`receiverId`) REFERENCES `user` (`usersystemid`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `messageSenderId` FOREIGN KEY (`senderId`) REFERENCES `user` (`usersystemid`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of message_info
 -- ----------------------------
-INSERT INTO `message_info` VALUES (1, 1, 0, 0, 1, 2, 'IN_SERVER');
-INSERT INTO `message_info` VALUES (2, 1, 0, 0, 2, 1, 'DELIVERED');
+INSERT INTO `message_info` VALUES (1, 1, 0, 0, 1, 2);
+INSERT INTO `message_info` VALUES (2, 1, 0, 0, 2, 1);
 
 -- ----------------------------
 -- Table structure for normal_user_message
@@ -171,17 +169,8 @@ CREATE TABLE `user`  (
   PRIMARY KEY (`userSystemId`) USING BTREE,
   UNIQUE INDEX `userCustomID`(`userCustomID`) USING BTREE,
   UNIQUE INDEX `userTel`(`userTel`) USING BTREE,
-  INDEX `userSystemId`(`userSystemId`) USING BTREE,
-  INDEX `userSystemId_2`(`userSystemId`) USING BTREE,
-  INDEX `userSystemId_3`(`userSystemId`) USING BTREE,
-  INDEX `userSystemId_4`(`userSystemId`) USING BTREE,
-  INDEX `userSystemId_5`(`userSystemId`) USING BTREE,
-  INDEX `userSystemId_6`(`userSystemId`) USING BTREE,
-  INDEX `userSystemId_7`(`userSystemId`) USING BTREE,
-  INDEX `userSystemId_8`(`userSystemId`) USING BTREE,
-  INDEX `userSystemId_9`(`userSystemId`) USING BTREE,
-  INDEX `userSystemId_10`(`userSystemId`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 71 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+  INDEX `userSystemId`(`userSystemId`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 70 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user
